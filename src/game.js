@@ -497,7 +497,7 @@ Game.prototype.handleSave = function() {
 };
 
 
-Game.prototype.handlePause = function() {
+Game.prototype.handlePause = function(speed) {
   // XXX Currently only offer pause and run to the user
   // No real difference among the speeds until we optimise
   // the sim
