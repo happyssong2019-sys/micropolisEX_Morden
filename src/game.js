@@ -39,6 +39,7 @@ import { Simulation } from './simulation.js';
 import { Storage } from './storage.js';
 import { Text } from './text.js';
 import { TouchWarnWindow } from './touchWarnWindow.js';
+import { setupChangeSpeed } from './changeSpeed.js';
 
 var disasterTimeout = 20 * 1000;
 
@@ -72,6 +73,14 @@ function Game(gameMap, tileSet, snowTileSet, spriteSheet, difficulty, name) {
   this.gameCanvas = new GameCanvas('canvasContainer');
   this.gameCanvas.init(this.gameMap, this.tileSet, spriteSheet);
   this.inputStatus = new InputStatus(this.gameMap, tileSet.tileWidth);
+
+  
+  setupChangeSpeed(this.inputStatus);
+  
+  this.inputStatus.addEventListener(Messages.SPEED_CHANGE, (speed) => {
+    alert(speed);
+    this.simulation.setSpeed(Number(speed));
+  });
 
   this.dialogOpen = false;
   this._openWindow = null;
@@ -492,12 +501,22 @@ Game.prototype.handlePause = function() {
   // XXX Currently only offer pause and run to the user
   // No real difference among the speeds until we optimise
   // the sim
-  this.isPaused = !this.isPaused;
+  // this.isPaused = !this.isPaused;
 
-  if (this.isPaused)
+  // if (this.isPaused)
+  //   this.simulation.setSpeed(Simulation.SPEED_PAUSED);
+  // else
+  //   this.simulation.setSpeed(this.defaultSpeed);
+
+  speed = Number(speed);
+  if (speed === Simulation.SPEED_PAUSED) {
+    this.isPaused = true;
     this.simulation.setSpeed(Simulation.SPEED_PAUSED);
-  else
-    this.simulation.setSpeed(this.defaultSpeed);
+  } else {
+    this.isPaused = false;
+    this.simulation.setSpeed(speed);
+    this.defaultSpeed = speed; // 사용자가 선택한 속도를 기억
+  }
 };
 
 
