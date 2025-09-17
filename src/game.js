@@ -78,7 +78,6 @@ function Game(gameMap, tileSet, snowTileSet, spriteSheet, difficulty, name) {
   setupChangeSpeed(this.inputStatus);
   
   this.inputStatus.addEventListener(Messages.SPEED_CHANGE, (speed) => {
-    alert(speed);
     this.simulation.setSpeed(Number(speed));
   });
 
