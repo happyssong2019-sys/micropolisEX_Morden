@@ -18,6 +18,7 @@ import { SplashScreen } from './splashScreen.js';
 import { TileSet } from './tileSet.js';
 import { TileSetURI } from './tileSetURI.ts';
 import { TileSetSnowURI } from './tileSetSnowURI.ts';
+import { TileSetNightURI } from './tileSetNightURI.ts';
 
 /*
  *
@@ -112,10 +113,7 @@ Config.debug = window.location.search.slice(1).split('&').some(function(param) {
 });
 
 
-var tiles = document.getElementById('tiles');
-var snowtiles = document.getElementById('snowtiles');
-var nighttiles = document.getElementById('nighttiles');
-var sprites = document.getElementById('sprites');
+var tiles = $('#tiles')[0];
 tileSet = new TileSet(tiles, onTilesLoaded, tileSetError);
-snowTileSet = new TileSet(snowtiles, onAllTilesLoaded, onFallbackTilesLoaded);
-nightTileSet = new TileSet(nighttiles, onAllTilesLoaded, onFallbackNightTilesLoaded);
+var snowtiles = $('#snowtiles')[1];
+var nighttiles = $('#nighttiles') [2];

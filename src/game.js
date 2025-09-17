@@ -209,7 +209,7 @@ function Game(gameMap, tileSet, snowTileSet, spriteSheet, difficulty, name) {
 
   // And date changes
   // XXX Not yet activated
-  // this.simulation.addEventListener(Messages.DATE_UPDATED, this.onDateChange.bind(this));
+  this.simulation.addEventListener(Messages.DATE_UPDATED, this.onDateChange.bind(this));
 
   this.infoBar = InfoBar('cclass', 'population', 'score', 'funds', 'date', 'name');
   var initialValues = {
