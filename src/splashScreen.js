@@ -40,7 +40,7 @@ var makeResizeListener = function(tileSet, spriteSheet) {
 };
 
 
-function SplashScreen(tileSet, snowTileSet, spriteSheet) {
+function SplashScreen(tileSet, snowTileSet, nightTileSet, spriteSheet) {
   // We don't launch the game if the screen is too small, however, we should retain the right to do so
   // should the situation change...
   if ($('#tooSmall').is(':visible')) {
@@ -51,6 +51,7 @@ function SplashScreen(tileSet, snowTileSet, spriteSheet) {
 
   this.tileSet = tileSet;
   this.snowTileSet = snowTileSet;
+  this.nightTileSet = nightTileSet;
   this.spriteSheet = spriteSheet;
   this.map = MapGenerator();
 
@@ -101,7 +102,7 @@ var handleLoad = function(e) {
   $('#splash').toggle();
 
   // Launch
-  var g = new Game(savedGame, this.tileSet, this.snowTileSet, this.spriteSheet, Simulation.LEVEL_EASY, name);
+  var g = new Game(savedGame, this.tileSet, this.snowTileSet, this.nightTileSet, this.spriteSheet, Simulation.LEVEL_EASY, name);
 };
 
 
@@ -145,7 +146,7 @@ var play = function(e) {
   var name = $('#nameForm').val();
 
   // Launch a new game
-  var g = new Game(this.map, this.tileSet, this.snowTileSet, this.spriteSheet, difficulty, name);
+  var g = new Game(this.map, this.tileSet, this.snowTileSet, this.nightTileSet, this.spriteSheet, difficulty, name);
 };
 
 

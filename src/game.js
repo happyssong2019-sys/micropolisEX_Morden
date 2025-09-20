@@ -44,7 +44,7 @@ import { setupChangeSpeed } from './changeSpeed.js';
 var disasterTimeout = 20 * 1000;
 
 
-function Game(gameMap, tileSet, snowTileSet, spriteSheet, difficulty, name) {
+function Game(gameMap, tileSet, snowTileSet, nightTileSet, spriteSheet, difficulty, name) {
   difficulty = difficulty || 0;
   var savedGame;
 
@@ -58,6 +58,7 @@ function Game(gameMap, tileSet, snowTileSet, spriteSheet, difficulty, name) {
 
   this.tileSet = tileSet;
   this.snowTileSet = snowTileSet;
+  this.nightTileSet = nightTileSet; // nightTileSet 추가
   this.defaultSpeed = Simulation.SPEED_MED;
   this.simulation = new Simulation(this.gameMap, difficulty, this.defaultSpeed, savedGame);
 
