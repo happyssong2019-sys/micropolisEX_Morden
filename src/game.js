@@ -297,7 +297,7 @@ var genericDialogClosure = function() {
 
 Game.prototype.onDateChange = function(date) {
   if (date.month === 10)
-    this.gameCanvas.changeTileSet(this.nightTileSet);
+    this.gameCanvas.changeTileSet(this.snowTileSet);
   else if (date.month === 1)
     this.gameCanvas.changeTileSet(this.tileSet);
 };

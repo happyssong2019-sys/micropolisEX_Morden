@@ -18,7 +18,6 @@ import { SplashScreen } from './splashScreen.js';
 import { TileSet } from './tileSet.js';
 import { TileSetURI } from './tileSetURI.ts';
 import { TileSetSnowURI } from './tileSetSnowURI.ts';
-import { TileSetNightURI } from './tileSetNightURI.ts';
 
 /*
  *
@@ -28,7 +27,7 @@ import { TileSetNightURI } from './tileSetNightURI.ts';
  */
 
 
-var fallbackImage, tileSet, snowTileSet, nightTileSet; // nightTileSet 변수 추가
+var fallbackImage, tileSet, snowTileSet;
 
 
 var onTilesLoaded = function() {
@@ -37,18 +36,12 @@ var onTilesLoaded = function() {
 };
 
 
-
-var onNightTilesLoaded = function() {
-  var nightTiles = $('#nighttiles')[2]; // nighttiles DOM 요소 (세 번째 <img>)
-  nightTileSet = new TileSet(nightTiles, onAllTilesLoaded, onFallbackNightTilesLoaded);
-};
-
 var onAllTilesLoaded = function() {
   // Kick things off properly
   var sprites = $('#sprites')[0];
   if (sprites.complete) {
     $('#loadingBanner').css('display', 'none');
-    var s = new SplashScreen(tileSet, snowTileSet, sprites, nightTileSet); // nightTileSet 전달
+    var s = new SplashScreen(tileSet, snowTileSet, sprites);
   } else {
      window.setTimeout(onAllTilesLoaded, 0);
   }
@@ -68,25 +61,11 @@ var onFallbackSnowLoad = function() {
 };
 
 
-var onFallbackNightLoad = function() {
-  fallbackImage.onload = fallbackImage.onerror = null;
-  nightTileSet = new TileSet(fallbackImage, onAllTilesLoaded, onFallbackError);
-};
-
-
 var onFallbackTilesLoaded = function() {
   fallbackImage = new Image();
   fallbackImage.onload = onFallbackSnowLoad;
   fallbackImage.onerror = onFallbackError;
   fallbackImage.src = TileSetSnowURI;
-};
-
-
-var onFallbackNightTilesLoaded = function() {
-  fallbackImage = new Image();
-  fallbackImage.onload = onFallbackNightLoad;
-  fallbackImage.onerror = onFallbackError;
-  fallbackImage.src = TileSetNightURI;
 };
 
 
@@ -116,4 +95,3 @@ Config.debug = window.location.search.slice(1).split('&').some(function(param) {
 var tiles = $('#tiles')[0];
 tileSet = new TileSet(tiles, onTilesLoaded, tileSetError);
 var snowtiles = $('#snowtiles')[1];
-var nighttiles = $('#nighttiles') [2];

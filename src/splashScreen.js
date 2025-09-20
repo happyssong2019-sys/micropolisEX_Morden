@@ -41,6 +41,8 @@ var makeResizeListener = function(tileSet, spriteSheet) {
 
 
 function SplashScreen(tileSet, snowTileSet, nightTileSet, spriteSheet) {
+  console.log('SplashScreen nightTileSet:', nightTileSet); // nightTileSet 값 확인
+  console.log('SplashScreen snowTileSet:', snowTileSet); // snowTileSet 값 확인
   // We don't launch the game if the screen is too small, however, we should retain the right to do so
   // should the situation change...
   if ($('#tooSmall').is(':visible')) {
